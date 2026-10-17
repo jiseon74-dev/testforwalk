@@ -20,20 +20,6 @@
     font-display: swap;
   }
   @font-face {
-    font-family: "NanumSquareRound";
-    src: url("./NanumSquareRoundOTFEB.otf") format("opentype");
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: "Maplestory Bold";
-    src: url("./Maplestory%20Bold.ttf") format("truetype");
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
     font-family: "NanumSquareB";
     src: url("./NanumSquareB.ttf") format("truetype");
     font-weight: 700;
@@ -628,9 +614,9 @@
     }
 
     // 텍스트 뒤에 별도 배경판을 그리지 않아 선택한 배경 이미지를 그대로 살립니다.
-    const font = '"NanumSquareNeo", "NanumSquare Neo", "Pretendard", "Noto Sans KR", "Malgun Gothic", sans-serif';
+    const font = '"NanumSquareRound", "NanumSquare Neo", "Pretendard", "Noto Sans KR", "Malgun Gothic", sans-serif';
     // 팀명과 월 제목은 Maplestory Bold 글꼴을 기본으로 사용합니다.
-    const titleFont = '"Maplestory Bold", "NanumSquareNeo", "Malgun Gothic", sans-serif';
+    const titleFont = '"Maplestory Bold", "NanumSquareRound", "Malgun Gothic", sans-serif';
     const titleWeight = 700;
     const team = (teamInput.value || '우리팀').trim();
     let month = (monthInput.value || '1').trim();
@@ -858,7 +844,7 @@
       ? `100보당 5P, 1일 최대 500P, ${numberFormat.format(eventDays)}일간 최대 ${numberFormat.format(eventDays * 500)}P 지급`
       : '';
     const eventSummaryFontSize = 22;
-    const eventSummaryFontFamily = '"NanumSquareB", "NanumSquareNeo", "Malgun Gothic", sans-serif';
+    const eventSummaryFontFamily = '"NanumSquareB", "NanumSquareRound", "Malgun Gothic", sans-serif';
     const eventSummaryFont = `700 ${eventSummaryFontSize}pt ${eventSummaryFontFamily}`;
     const eventSummaryColor = '#2b3d4f';
     const eventSummaryStartX = 232; // 문구 시작 가로 위치
@@ -949,7 +935,7 @@
     function fitRewardLines(lines, preferredSize = 14, maxWidth = 115) {
       let size = preferredSize;
       while (size >= 7) {
-        pctx.font = `700 ${size}px "NanumSquareB", "NanumSquareNeo", "Malgun Gothic", sans-serif`;
+        pctx.font = `700 ${size}px "NanumSquareB", "NanumSquareRound", "Malgun Gothic", sans-serif`;
         const linesFit = lines.every(line => pctx.measureText(line).width <= maxWidth);
         if (linesFit) return { lines, size };
         // 상품명 중 '/'가 없을 때도 115px를 넘으면 두 줄로 분할합니다.
@@ -957,7 +943,7 @@
           const text = lines[0];
           let a = '', b = '';
           for (const ch of Array.from(text)) {
-            pctx.font = `700 ${size}px "NanumSquareB", "NanumSquareNeo", "Malgun Gothic", sans-serif`;
+            pctx.font = `700 ${size}px "NanumSquareB", "NanumSquareRound", "Malgun Gothic", sans-serif`;
             if (pctx.measureText(a + ch).width <= maxWidth && !b) a += ch;
             else b += ch;
           }
@@ -966,7 +952,7 @@
         }
         size -= 1;
       }
-      pctx.font = '700 7px "NanumSquareB", "NanumSquareNeo", "Malgun Gothic", sans-serif';
+      pctx.font = '700 7px "NanumSquareB", "NanumSquareRound", "Malgun Gothic", sans-serif';
       return { lines: lines.slice(0, 2).map(line => line.length > 12 ? line.slice(0, 11) + '…' : line), size: 7 };
     }
     function drawCenteredRewardName(text, centerX, centerY, maxWidth = 115) {
@@ -980,7 +966,7 @@
       pctx.fillStyle = '#522c22';
       pctx.textAlign = 'center';
       pctx.textBaseline = 'middle';
-      pctx.font = `700 ${size}px "NanumSquareB", "NanumSquareNeo", "Malgun Gothic", sans-serif`;
+      pctx.font = `700 ${size}px "NanumSquareB", "NanumSquareRound", "Malgun Gothic", sans-serif`;
       lines.forEach((line, i) => {
         pctx.fillText(line, centerX, centerY - totalHeight / 2 + i * lineHeight, maxWidth);
       });
@@ -997,7 +983,7 @@
       pctx.textAlign = 'center';
       pctx.textBaseline = 'middle';
       pctx.fillStyle = '#3b3b3b';
-      pctx.font = '700 14px "NanumSquareB", "NanumSquareNeo", "Malgun Gothic", sans-serif';
+      pctx.font = '700 14px "NanumSquareB", "NanumSquareRound", "Malgun Gothic", sans-serif';
       pctx.fillText(`${entry.rank}등(${countValue}명)`, centerX, countCenterY, 150);
       if (entry.image && entry.image.complete && entry.image.naturalWidth) {
         const iw = 90, ih = 60;
@@ -1010,7 +996,7 @@
     pctx.textAlign = 'center';
     pctx.textBaseline = 'middle';
     pctx.fillStyle = '#3b3b3b';
-    pctx.font = '700 14px "NanumSquareB", "NanumSquareNeo", "Malgun Gothic", sans-serif';
+    pctx.font = '700 14px "NanumSquareB", "NanumSquareRound", "Malgun Gothic", sans-serif';
     pctx.fillText('팀 우수상', 710, 970, 150);
     if (teamAwardImage && teamAwardImage.complete && teamAwardImage.naturalWidth) {
       const iw = 140, ih = 60;
@@ -1047,7 +1033,7 @@
     const loads = [];
     if (document.fonts && document.fonts.load) {
       loads.push(document.fonts.load('30px "Maplestory Bold"'));
-      loads.push(document.fonts.load('700 60px "CookieRun Bold"'));
+      loads.push(document.fonts.load('700 60px "Maplestory Bold"'));
       loads.push(document.fonts.load('700 28px "NanumSquareB"'));
       loads.push(document.fonts.load('700 22pt "NanumSquareB"'));
       loads.push(document.fonts.load('700 20pt "NanumSquareB"'));
@@ -1145,12 +1131,35 @@
   }
   document.getElementById('appTeam').addEventListener('input', () => syncBannerFromApplication('appTeam'));
   document.getElementById('appAudience').addEventListener('input', () => syncBannerFromApplication('appAudience'));
-  document.getElementById('appStartDate').addEventListener('change', () => {
+  // 날짜 입력은 모바일 브라우저의 input/change 이벤트 차이를 모두 처리합니다.
+  let lastHandledStartDate = document.getElementById('appStartDate').value;
+  const handleStartDateChange = () => {
+    const currentStartDate = document.getElementById('appStartDate').value;
     updateEndDateBounds(true);
     syncBannerFromApplication('appStartDate');
-    applySeasonDefaults(document.getElementById('appStartDate').value);
-  });
-  document.getElementById('appEndDate').addEventListener('change', () => syncBannerFromApplication('appEndDate'));
+    if (currentStartDate !== lastHandledStartDate) {
+      applySeasonDefaults(currentStartDate);
+      lastHandledStartDate = currentStartDate;
+    }
+  };
+  document.getElementById('appStartDate').addEventListener('input', handleStartDateChange);
+  document.getElementById('appStartDate').addEventListener('change', handleStartDateChange);
+  const handleEndDateChange = () => {
+    const startValue = document.getElementById('appStartDate').value;
+    const endInput = document.getElementById('appEndDate');
+    updateEndDateBounds(false);
+    if (startValue && endInput.value) {
+      const days = daysInclusive(startValue, endInput.value);
+      if (days === null || days < 10 || days > 20) {
+        document.getElementById('submitStatus').textContent = '희망기간은 시작일과 종료일을 포함해 10일 이상 20일 이하(10~20일)로 선택해 주세요.';
+      } else {
+        document.getElementById('submitStatus').textContent = '';
+      }
+    }
+    syncBannerFromApplication('appEndDate');
+  };
+  document.getElementById('appEndDate').addEventListener('input', handleEndDateChange);
+  document.getElementById('appEndDate').addEventListener('change', handleEndDateChange);
   updateEndDateBounds(false);
   syncBannerFromApplication();
 
@@ -1254,6 +1263,7 @@
   updateWorkflowUi();
 
   function validateApplication() {
+    updateEndDateBounds(false);
     const start = document.getElementById('appStartDate').value;
     const end = document.getElementById('appEndDate').value;
     const countValue = document.getElementById('appCount').value;
